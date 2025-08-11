@@ -2,7 +2,7 @@
 set -e
 
 echo "🔧 Installing MIFARE Classic tools..."
-brew install libnfc nfcutils
+brew install libnfc mfoc mfcuk
 
 echo "⚙️ Configuring NFC device..."
 sudo mkdir -p /opt/homebrew/etc/nfc

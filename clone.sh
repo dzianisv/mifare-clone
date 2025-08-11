@@ -1,25 +1,29 @@
 #!/bin/bash
 set -e
 
-DUMP_FILE="${1:-dump.mfd}"
-
-if [ ! -f "$DUMP_FILE" ]; then
-    echo "❌ Dump file not found: $DUMP_FILE"
-    echo "Usage: $0 [dump_file.mfd]"
-    exit 1
-fi
-
-echo "📡 Checking NFC reader..."
-nfc-list > /dev/null 2>&1 || {
-    echo "❌ No NFC reader detected. Make sure it's connected."
+echo "🔍 Checking for MIFARE Classic card..."
+nfc-list | grep -q "MIFARE Classic" || {
+    echo "❌ No MIFARE Classic card found. Place card on reader."
     exit 1
 }
 
-echo "🎯 Ready to write $DUMP_FILE to card"
-echo "⚠️  Place blank MIFARE Classic card on reader and press Enter..."
+DUMP_FILE="card_$(date +%Y%m%d_%H%M%S).mfd"
+
+echo "🔑 Attempting to read card with default keys..."
+mfoc -O "$DUMP_FILE" 2>/dev/null || {
+    echo "⚠️  Default keys failed, trying advanced attack..."
+    mfcuk -C -R 0:A -s 250 -S 250 -O "$DUMP_FILE" || {
+        echo "❌ Failed to read card. Card may use non-standard keys."
+        exit 1
+    }
+}
+
+echo "✅ Card read successfully → $DUMP_FILE"
+echo ""
+echo "📝 Place blank MIFARE Classic card on reader and press Enter..."
 read
 
-echo "✍️  Writing dump to card..."
+echo "✍️  Writing to blank card..."
 nfc-mfclassic w a u "$DUMP_FILE"
 
 echo "✅ Clone complete!"

@@ -2,7 +2,6 @@
 
 Quick and simple tool for cloning MIFARE Classic cards on macOS.
 
-![PN532 NFC Reader](pn532-reader.webp)
 
 ## One-Line Installation
 
@@ -33,8 +32,14 @@ nfc-list
 
 ### Clone a Card
 ```bash
-bash clone.sh dump.mfd
+bash clone.sh
 ```
+
+The script will:
+1. Detect card and attempt to read with default keys
+2. If default keys fail, use advanced attacks (mfcuk)
+3. Save dump with timestamp
+4. Write dump to blank card when prompted
 
 ## Requirements
 
