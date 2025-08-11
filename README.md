@@ -2,6 +2,8 @@
 
 Quick and simple tool for cloning MIFARE Classic cards on macOS.
 
+![PN532 NFC Reader with USB adapter](https://github.com/dzianisv/mifare-clone/assets/1199327/pn532-reader.jpg)
+
 
 ## One-Line Installation
 
