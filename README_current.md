@@ -2,18 +2,16 @@
 
 Quick and simple tool for cloning MIFARE Classic cards on macOS.
 
-![PN532 NFC Reader](pn532-reader.webp)
-
 ## One-Line Installation
 
 ```bash
-curl -sSL https://raw.githubusercontent.com/dzianisv/mifare-clone/master/install.sh | bash
+curl -sSL https://raw.githubusercontent.com/yourusername/mifare-clone/main/install.sh | bash
 ```
 
 Or clone and run locally:
 
 ```bash
-git clone https://github.com/dzianisv/mifare-clone.git
+git clone https://github.com/yourusername/mifare-clone.git
 cd mifare-clone
 bash install.sh
 ```
