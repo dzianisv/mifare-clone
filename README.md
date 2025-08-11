@@ -11,14 +11,6 @@ Quick and simple tool for cloning MIFARE Classic cards on macOS.
 curl -sSL https://raw.githubusercontent.com/dzianisv/mifare-clone/master/install.sh | bash
 ```
 
-Or clone and run locally:
-
-```bash
-git clone https://github.com/dzianisv/mifare-clone.git
-cd mifare-clone
-bash install.sh
-```
-
 ## What It Does
 
 1. **Installs libnfc & nfcutils** - Core NFC tools for card communication
@@ -26,11 +18,6 @@ bash install.sh
 3. **Enables card cloning** - Write MIFARE Classic dumps to blank cards
 
 ## Usage
-
-### Test Connection
-```bash
-nfc-list
-```
 
 ### Clone a Card
 ```bash
